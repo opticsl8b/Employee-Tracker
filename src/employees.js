@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const cTable = require("console.table");
+require("console.table");
 
 const Roles = require("../lib/Roles");
 const Employees = require("../lib/Employees");
@@ -243,8 +243,7 @@ const viewEmployeesByDepartmentPrompts = () => {
 const handleViewEmployeesByDepartment = () => {
   return viewEmployeesByDepartmentPrompts().then(({ departmentName }) => {
     return employees.getEmployeesByDepartment(departmentName).then((res) => {
-      const table = cTable.getTable("\n", res);
-      console.log(table);
+        console.table(res);
     });
   });
 };
@@ -267,8 +266,7 @@ const viewEmployeeByManagersPrompts = () =>{
 const handleViewEmployeesByManagers = () => {
   return viewEmployeeByManagersPrompts().then(({ managerName }) => {
     return employees.getEmployeesByManager(managerName).then((res) => {
-      const table = cTable.getTable("\n", res);
-      console.log(table);
+        console.table(res);
     });
   });
 };

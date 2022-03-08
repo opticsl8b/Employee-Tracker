@@ -1,13 +1,13 @@
 const inquirer = require("inquirer");
 const Departments = require("../lib/Departments");
-const cTable = require("console.table");
+require("console.table");
 
 const departments = new Departments();
 
 const handleAllDeparmentsView = () => {
   return departments.getAllDepartmentsNames().then((res) => {
-    const table = cTable.getTable("\n", res);
-    console.log(table);
+    
+    console.table(res);
   });
 };
 
@@ -66,8 +66,7 @@ const handleRemoveDepartment = () => {
 const handleDepartmentLevelBudget = () => {
   return chooseDepartmentPrompts().then(({ departmentName }) => {
     return departments.getDepartmentBudget(departmentName).then((res) => {
-      const table = cTable.getTable("\n", res);
-      console.log(table);
+        console.table(res);
     });
   });
 };

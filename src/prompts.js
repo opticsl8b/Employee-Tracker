@@ -5,6 +5,7 @@ const Employees = require("../lib/Employees");
 const employeeHandler = require("../src/employees");
 const departmentHandler = require("../src/departments");
 const roleHandler = require("../src/roles");
+const clc = require("cli-color");
 
 const employees = new Employees();
 const roles = new Roles();
@@ -16,23 +17,31 @@ const whatWouldYouLikeToDoPrompt = () => {
     name: "action",
     message: "What would you like to do?",
     choices: [
-      "Exit the application",
-      "View All Departments",
+      clc.black.bgWhite("View All Departments"),
       "Add Department",
       "Remove Department",
-      "View All Roles",
+      new inquirer.Separator(),
+      clc.black.bgWhite("View All Roles"),
       "Add Role",
       "Remove Role",
-      "View All Employees",
+      new inquirer.Separator(),
+      clc.black.bgWhite("View All Employees"),
       "Add Employee",
       "Remove Employee",
+      new inquirer.Separator(),
       "Update Employee Role",
       "Update Employee Manager",
+      new inquirer.Separator(),
       "View Employees by Department",
       "View Employees by Manager",
+      new inquirer.Separator(),
       "Order All Employees By Department",
       "Order All Employees By Manager",
-      "View The Total Utilized Budget Of A Department",
+      new inquirer.Separator(),
+      "View Budget Of A Department",
+      new inquirer.Separator(),
+      clc.red.bgWhite("Exit the application"),
+      new inquirer.Separator(),
     ],
   });
 };
@@ -41,13 +50,14 @@ const interactWithUser = () => {
   whatWouldYouLikeToDoPrompt()
     .then(({ action }) => {
       switch (action) {
-        case "Exit the application":
+        case clc.red.bgWhite("Exit the application"):
+          console.log(clc.green.bgWhite("See You Next Time!!"));
           return process.exit();
-        case "View All Departments":
+        case clc.black.bgWhite("View All Departments"):
           return departmentHandler.handleAllDeparmentsView();
-        case "View All Roles":
+        case clc.black.bgWhite("View All Roles"):
           return roleHandler.handleAllRolesView();
-        case "View All Employees":
+        case clc.black.bgWhite("View All Employees"):
           return employees.getAllEmployees();
         case "Order All Employees By Department":
           return employees.getAllEmployeesByDepartment();
