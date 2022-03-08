@@ -6,7 +6,6 @@ const departments = new Departments();
 
 const handleAllDeparmentsView = () => {
   return departments.getAllDepartmentsNames().then((res) => {
-    
     console.table(res);
   });
 };

@@ -1,11 +1,12 @@
-const inquirer = require("inquirer");
+const inquirer = require("inquirer"); // inquirer module
+const clc = require("cli-color"); // color module
+
 const Departments = require("../lib/Departments");
 const Roles = require("../lib/Roles");
 const Employees = require("../lib/Employees");
 const employeeHandler = require("../src/employees");
 const departmentHandler = require("../src/departments");
 const roleHandler = require("../src/roles");
-const clc = require("cli-color");
 
 const employees = new Employees();
 const roles = new Roles();
@@ -15,17 +16,17 @@ const whatWouldYouLikeToDoPrompt = () => {
   return inquirer.prompt({
     type: "list",
     name: "action",
-    message: "What would you like to do?",
+    message: clc.black.bgWhite("What would you like to do?"),
     choices: [
-      clc.black.bgWhite("View All Departments"),
+      "View All Departments",
       "Add Department",
       "Remove Department",
       new inquirer.Separator(),
-      clc.black.bgWhite("View All Roles"),
+      "View All Roles",
       "Add Role",
       "Remove Role",
       new inquirer.Separator(),
-      clc.black.bgWhite("View All Employees"),
+      "View All Employees",
       "Add Employee",
       "Remove Employee",
       new inquirer.Separator(),
@@ -38,7 +39,7 @@ const whatWouldYouLikeToDoPrompt = () => {
       "Order All Employees By Department",
       "Order All Employees By Manager",
       new inquirer.Separator(),
-      "View Budget Of A Department",
+      "View Budget By Department",
       new inquirer.Separator(),
       clc.red.bgWhite("Exit the application"),
       new inquirer.Separator(),
@@ -53,11 +54,11 @@ const interactWithUser = () => {
         case clc.red.bgWhite("Exit the application"):
           console.log(clc.green.bgWhite("See You Next Time!!"));
           return process.exit();
-        case clc.black.bgWhite("View All Departments"):
+        case "View All Departments":
           return departmentHandler.handleAllDeparmentsView();
-        case clc.black.bgWhite("View All Roles"):
+        case "View All Roles":
           return roleHandler.handleAllRolesView();
-        case clc.black.bgWhite("View All Employees"):
+        case "View All Employees":
           return employees.getAllEmployees();
         case "Order All Employees By Department":
           return employees.getAllEmployeesByDepartment();
@@ -83,7 +84,7 @@ const interactWithUser = () => {
           return employeeHandler.handleViewEmployeesByDepartment();
         case "View Employees by Manager":
           return employeeHandler.handleViewEmployeesByManagers();
-        case "View The Total Utilized Budget Of A Department":
+        case "View Budget By Department":
           return departmentHandler.handleDepartmentLevelBudget();
       }
     })

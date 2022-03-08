@@ -10,6 +10,7 @@ const connection = require("./config/connection");
 // import prompt method
 const { interactWithUser } = require("./src/prompts");
 
+// set up connection and handle prompts
 connection.connect((err)=>{
     if (err) throw err;
     interactWithUser()
