@@ -39,7 +39,7 @@ const whatWouldYouLikeToDoPrompt = () => {
       "Order All Employees By Department",
       "Order All Employees By Manager",
       new inquirer.Separator(),
-      "View Budget By Department",
+      "View Total Utilized Budget of a Department",
       new inquirer.Separator(),
       clc.red.bgWhite("Exit the application"),
       new inquirer.Separator(),
@@ -84,7 +84,7 @@ const interactWithUser = () => {
           return employeeHandler.handleViewEmployeesByDepartment();
         case "View Employees by Manager":
           return employeeHandler.handleViewEmployeesByManagers();
-        case "View Budget By Department":
+        case "View Total Utilized Budget of a Department":
           return departmentHandler.handleDepartmentLevelBudget();
       }
     })
